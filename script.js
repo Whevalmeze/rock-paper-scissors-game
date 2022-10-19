@@ -15,8 +15,8 @@ function getComputerChoice() {
     return arrOfChoice[randomNumber];
 }
 
-//playGame(playerSelection, computerSelection) a function that plays the game
-function playGame(playerSelection, computerSelection = getComputerChoice()) {
+//playRound(playerSelection, computerSelection) a function that plays the game
+function playRound(playerSelection, computerSelection = getComputerChoice()) {
     //update playerSelection to be case-insensitive using .lowerCase
     playerSelectionLowerCase = playerSelection.toLowerCase();
     //use if statement to compare playerSelection to computerSelection
@@ -32,3 +32,4 @@ function playGame(playerSelection, computerSelection = getComputerChoice()) {
         return `You lose! ${computerSelection} beats ${playerSelection}`;
     }
 }
+
