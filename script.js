@@ -1,28 +1,34 @@
 // GAME FUNCTION
-function getComputerChoice() {
-    // create an array- arrOfChoice of rock, paper, scissors
-    let arrOfChoice = ["Rock", "Paper", "Scissors"]
-    //var randomDecimal = random maths multiplies the array's length
-    let randomDecimal = Math.random() * arrOfChoice.length;
-    //var randomNumber= floor the randomDecimal
-    let randomNumber = Math.floor(randomDecimal);
-    //let randomComputerChoice = randomNumber pulling value from the array
-    return arrOfChoice[randomNumber];
-};
-function getPlayerChoice() {
-    return prompt("Make A Choice!!");
-};
 let stats = document.createElement('h3');
 let statsContainer = document.querySelector('div.stats-container');
-let finalResult = document.querySelector('h3.final-result');
 stats.classList.add('stats');
 statsContainer.appendChild(stats);
+let finalResult = document.querySelector('h3.final-result');
+let playbuttons = document.querySelectorAll('div.btn-cls  button');
 var computerScore = 0;
 var playerScore = 0;
+let wrapperContent = document.querySelector("body > div.container > div.wrapper-content");
+let finalResultContainer = document.querySelector("body > div.container > div.final-result-container");
+let replayBtn = document.querySelector("div.final-result-container > button");
+finalResultContainer.style.display = 'none';
 function game(param) {
+    function getComputerChoice() {
+        // create an array- arrOfChoice of rock, paper, scissors
+        let arrOfChoice = ["Rock", "Paper", "Scissors"]
+        //var randomDecimal = random maths multiplies the array's length
+        let randomDecimal = Math.random() * arrOfChoice.length;
+        //var randomNumber= floor the randomDecimal
+        let randomNumber = Math.floor(randomDecimal);
+        //let randomComputerChoice = randomNumber pulling value from the array
+        return arrOfChoice[randomNumber];
+    };
     if (computerScore === 5 && computerScore > playerScore) {
+        wrapperContent.style.display = 'none';
+        finalResultContainer.style.display='flex';
         return 'You lose, Bot wins';
     } else if (playerScore === 5 && playerScore > computerScore) {
+        wrapperContent.style.display = 'none';
+        finalResultContainer.style.display='flex';
         return 'You win, human';
     };
      function playRound(playerSelection, computerSelection = getComputerChoice()) {
@@ -51,15 +57,19 @@ function game(param) {
 
 // DOM MANIPULATION
 // alert('Im here');
+replayBtn.addEventListener('click', () => {
+    computerScore = 0; playerScore = 0; stats.textContent = '';
+    wrapperContent.style.display = 'flex';
+    finalResultContainer.style.display = 'none';
+})
 
 
-
-let playbuttons = document.querySelectorAll('button');
-let rockChoice = document.querySelector('button.btn1');
-let paperChoice = document.querySelector('button.btn2');
-let scissorsChoice = document.querySelector('button.btn3');
-playbuttons.forEach((choice) => choice.addEventListener('click',
-    function () { finalResult.textContent = game(choice.innerText); }));
+playbuttons.forEach((choice) => {
+    choice.addEventListener('click', function () {
+        finalResult.textContent = game(choice.innerText);
+    });
+}
+);
 
 let div = document.querySelectorAll(".minContainer, .minContainer2");
 div.forEach((each) => each.addEventListener('click', (e) => { console.log(each.classList.value, each.id); /*e.stopPropagation();*/ }, { capture: true,once: true }))

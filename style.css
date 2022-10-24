@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
 }
-div.container{
+body{
     max-height: 100vh;
     width: 100%;
     background-color: #0d0019;
@@ -16,12 +16,26 @@ div.container{
     justify-content: center;
     gap: 16px;
 }
+div.container{
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+div.container > .wrapper-content{
+    display: inherit;
+    gap: 16px;
+    flex-direction: column;
+    min-height: 232px;
+}
 h1.header{
     font-size: 72px;
     line-height: 1.1;
     font-weight: 700;
     letter-spacing: -0.066em;
     font-family: fangsong;
+}
+h1.header-text{
+    margin-bottom: 12px;
 }
 h2.header-two{
     font-family: Circular-Loom;
@@ -40,10 +54,14 @@ h3.final-result{
 p.paragraph {
     font-size: 1.5rem;
 }
-div.dynamic-cls{
+div.dynamic-cls, div.final-result-container{
     display: flex;
     gap: 20px;
     justify-content: center;
+}
+div.final-result-container{
+    flex-direction: column;
+    align-items: center;
 }
 div.dynamic-cls> div{
     display: inherit;
@@ -52,7 +70,7 @@ div.dynamic-cls> div{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 31px;
+    gap: 10px;
     flex-wrap: wrap;
 }
 button{
@@ -66,7 +84,7 @@ button{
     font-size: 20px;
     cursor: pointer;
 }
-button:active, button:hover {
+button:active {
     outline: 4px solid blueviolet;
     background-color: #8a2be24a;
 }
