@@ -9,121 +9,57 @@ function getComputerChoice() {
     //let randomComputerChoice = randomNumber pulling value from the array
     return arrOfChoice[randomNumber];
 };
-
-function getPlayerChoice() {
-    return prompt("Make A Choice!!");
-}
-
-
-function game() {
-    var playerScore = 0;
-    var computerScore = 0;
-    function playRound(playerSelection = getPlayerChoice(), computerSelection = getComputerChoice()) {
-        playerSelectionLowerCase = playerSelection.toLowerCase();
-        computerSelectionLowerCase = computerSelection.toLowerCase();
-        if (playerSelectionLowerCase === computerSelectionLowerCase) {
-            console.log(`It's a tie, try again...`);
-        } else if (
-            (playerSelectionLowerCase === "rock" && computerSelectionLowerCase === "paper") ||
-            (playerSelectionLowerCase === "paper" && computerSelectionLowerCase === "scissors") ||
-            (playerSelectionLowerCase === "scissors" && computerSelectionLowerCase === "rock")         
-        ) {
-            computerScore++
-            console.log(`You lose, ${computerSelection} beats ${playerSelection}. computer score: ${computerScore}`);
-        } else if (
-            (playerSelectionLowerCase === "rock" && computerSelectionLowerCase === "scissors") ||
-            (playerSelectionLowerCase === "paper" && computerSelectionLowerCase === "rock") ||
-            (playerSelectionLowerCase === "scissors" && computerSelectionLowerCase === "paper")         
-        ) {
-            playerScore++
-            console.log(`You win, ${playerSelection} beats ${computerSelection}. your score: ${playerScore}`);
-        }
-        else {
-            alert(`Wrong Input: ${playerSelection}.`)
-        }
-    };
-    for (let i = 0; i < 5; i++) {
-        playRound();
-    };
-    if (playerScore > computerScore) {
-        alert(`Great Job! You won the computer.
-                Your score:     ${playerScore} points.
-                Computer score: ${computerScore} points`);
-    } else {
-        alert(`Oops! You lost.
-                Your score:     ${playerScore} points.
-                Computer score: ${computerScore} points`);
-    };
-};
-
-/*
-let arrOfChoice = ["rock", "paper", "scissors"]
-function getComputerChoice() {
-    // create an array- arrOfChoice of rock, paper, scissors
-    //var randomDecimal = random maths multiplies the array's length
-    let randomDecimal = Math.random() * arrOfChoice.length;
-    //var randomNumber= floor the randomDecimal
-    let randomNumber = Math.floor(randomDecimal);
-    //let randomComputerChoice = randomNumber pulling value from the array
-    return arrOfChoice[randomNumber];
-};
-
 function getPlayerChoice() {
     return prompt("Make A Choice!!");
 };
-
-
-function game() {
-    var playerScore = 0;
-    var computerScore = 0;
-    function playRound(playerSelection = getPlayerChoice(), computerSelection = getComputerChoice()) {
-        playerSelectionLowerCase = playerSelection.toLowerCase();
-        computerSelectionLowerCase = computerSelection.toLowerCase();
-        if (playerSelectionLowerCase === computerSelectionLowerCase) {
-            console.log(`It's a tie, try again...`);
-        } else if ((arrOfChoice.some((choice) => choice == playerSelectionLowerCase) == false)) {
-            alert(`Wrong Input: ${playerSelection}.`)
-        } else {
-            function run() {
-                if (
-                    (playerSelectionLowerCase === "rock" && computerSelectionLowerCase === "paper") ||
-                    (playerSelectionLowerCase === "paper" && computerSelectionLowerCase === "scissors") ||
-                    (playerSelectionLowerCase === "scissors" && computerSelectionLowerCase === "rock")
-                ) {
-                    computerScore++
-                    console.log(`You lose, ${computerSelection} beats ${playerSelection}. computer score: ${computerScore}`);
-                } else if (
-                    (playerSelectionLowerCase === "rock" && computerSelectionLowerCase === "scissors") ||
-                    (playerSelectionLowerCase === "paper" && computerSelectionLowerCase === "rock") ||
-                    (playerSelectionLowerCase === "scissors" && computerSelectionLowerCase === "paper")
-                ) {
-                    playerScore++
-                    console.log(`You win, ${playerSelection} beats ${computerSelection}. your score: ${playerScore}`);
-                }
-            };
-            for (let i = 0; i < 5; i++) {
-                run();
-            };
-            if (playerScore > computerScore) {
-                alert(`Great Job! You won the computer.
-                    Your score:     ${playerScore} points.
-                    Computer score: ${computerScore} points`);
-            } else {
-                alert(`Oops! You lost.
-                    Your score:     ${playerScore} points.
-                    Computer score: ${computerScore} points`);
-            };
-        }
+let stats = document.createElement('h3');
+let statsContainer = document.querySelector('div.stats-container');
+let finalResult = document.querySelector('h3.final-result');
+stats.classList.add('stats');
+statsContainer.appendChild(stats);
+var computerScore = 0;
+var playerScore = 0;
+function game(param) {
+    if (computerScore === 5 && computerScore > playerScore) {
+        return 'You lose, Bot wins';
+    } else if (playerScore === 5 && playerScore > computerScore) {
+        return 'You win, human';
     };
-    playRound();
+     function playRound(playerSelection, computerSelection = getComputerChoice()) {
+         playerSelectionLowerCase = playerSelection.toLowerCase();
+         computerSelectionLowerCase = computerSelection.toLowerCase();
+         if (playerSelectionLowerCase === computerSelectionLowerCase) {
+             return (`It's a tie, try again...`);
+         } else if (
+             (playerSelectionLowerCase === "rock" && computerSelectionLowerCase === "paper") ||
+             (playerSelectionLowerCase === "paper" && computerSelectionLowerCase === "scissors") ||
+             (playerSelectionLowerCase === "scissors" && computerSelectionLowerCase === "rock")         
+         ) {
+             computerScore++
+             return (`You lose, ${computerSelection} beats ${playerSelection}. computer score: ${computerScore}`);
+         } else if (
+             (playerSelectionLowerCase === "rock" && computerSelectionLowerCase === "scissors") ||
+             (playerSelectionLowerCase === "paper" && computerSelectionLowerCase === "rock") ||
+             (playerSelectionLowerCase === "scissors" && computerSelectionLowerCase === "paper")         
+         ) {
+             playerScore++
+             return (`You win, ${playerSelection} beats ${computerSelection}. your score: ${playerScore}`);
+         }
+     };
+    stats.textContent = playRound(param);
 };
-
-*/
 
 // DOM MANIPULATION
-let btn = document.querySelector('button#click-me');
-btn.addEventListener('click', game);
-alert("Im working")
+// alert('Im here');
+
+
+
+let playbuttons = document.querySelectorAll('button');
+let rockChoice = document.querySelector('button.btn1');
+let paperChoice = document.querySelector('button.btn2');
+let scissorsChoice = document.querySelector('button.btn3');
+playbuttons.forEach((choice) => choice.addEventListener('click',
+    function () { finalResult.textContent = game(choice.innerText); }));
 
 let div = document.querySelectorAll(".minContainer, .minContainer2");
 div.forEach((each) => each.addEventListener('click', (e) => { console.log(each.classList.value, each.id); /*e.stopPropagation();*/ }, { capture: true,once: true }))

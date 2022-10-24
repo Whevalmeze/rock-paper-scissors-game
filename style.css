@@ -5,7 +5,7 @@
 div.container{
     max-height: 100vh;
     width: 100%;
-    background-color: #111827;
+    background-color: #0d0019;
     height: 100vh;
     color: #d1d5db;
     font-family: fangsong;
@@ -14,7 +14,7 @@ div.container{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 10px;
+    gap: 16px;
 }
 h1.header{
     font-size: 72px;
@@ -30,56 +30,46 @@ h2.header-two{
     letter-spacing: 0em;
     color: #f472b6;
 }
+h3.final-result{
+    font-size: 2.8rem;
+    line-height: 0.8;
+    font-weight: 500;
+    font-family: Circular-Loom;
+    color: #f472b6;
+}
 p.paragraph {
     font-size: 1.5rem;
+}
+div.dynamic-cls{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+div.dynamic-cls> div{
+    display: inherit;
 }
 .btn-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 31px;
+    flex-wrap: wrap;
 }
 button{
+    font-family: 'Circular-Loom';
+    text-transform: lowercase;
     border: none;
     padding: 11px 40px;
     border-radius: 5px;
     background: blueviolet;
     color: #ffffff;
     font-size: 20px;
+    cursor: pointer;
+}
+button:active, button:hover {
+    outline: 4px solid blueviolet;
+    background-color: #8a2be24a;
 }
 code {
     color: #c299e9;
-}
-
-
-
-
-
-
-.minContainer{
-    border: black 5px solid;
-    background-color:pink; 
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    height:100vh;
-}
-#minContainer2{ 
-    background-color: red;
-    width: 400px;
-    height: 400px;
-    display: inherit;
-    justify-content: center;
-    align-items: center;
-    border: none;
-}
-#minContainer3{ 
-    background-color: blue;
-    width: 200px;
-    height: 200px;
-    display: inherit;
-    justify-content: center;
-    align-items: center;
-    border: none;
 }
